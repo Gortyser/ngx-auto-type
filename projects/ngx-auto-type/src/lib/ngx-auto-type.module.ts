@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgxAutoTypeComponent } from './ngx-auto-type.component';
-
-
+import { NgxAutoTypeDirective } from './ngx-auto-type.directive';
 
 @NgModule({
   declarations: [
-    NgxAutoTypeComponent
-  ],
-  imports: [
+    NgxAutoTypeDirective
   ],
   exports: [
-    NgxAutoTypeComponent
+    NgxAutoTypeDirective
   ]
 })
 export class NgxAutoTypeModule { }
