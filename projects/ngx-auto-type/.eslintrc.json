@@ -24,7 +24,8 @@
             "prefix": "ngx",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/no-inferrable-types": "off"
       }
     },
     {
