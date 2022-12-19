@@ -4,5 +4,4 @@ import { Directive } from '@angular/core';
   selector: '[ngxAutoType]'
 })
 export class NgxAutoTypeDirective {
-  constructor() { }
 }
