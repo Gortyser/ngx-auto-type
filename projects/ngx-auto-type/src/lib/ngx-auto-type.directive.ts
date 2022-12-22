@@ -1,12 +1,25 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[ngxAutoType]'
 })
 export class NgxAutoTypeDirective implements OnInit {
+  @Input('ngxAutoType')
+  set isEnabled(value: boolean | undefined) {
+    this._isEnabled = value;
+
+    if (this.isEnabled) {
+      this.type();
+    }
+  }
+  get isEnabled(): boolean | undefined {
+    return this._isEnabled;
+  }
+
   private element: HTMLElement | undefined;
   private originalText: string | undefined;
   private typingDelay: number = 50;
+  private _isEnabled: boolean | undefined = true;
 
   public constructor(private elementRef: ElementRef) {
   }
@@ -16,6 +29,10 @@ export class NgxAutoTypeDirective implements OnInit {
   }
 
   public type(): void {
+    if (!this.isEnabled) {
+      return;
+    }
+
     this.initialize();
     this.startTyping();
   }
@@ -23,7 +40,7 @@ export class NgxAutoTypeDirective implements OnInit {
   private initialize(): void {
     this.element = this.elementRef.nativeElement;
 
-    if (!this.element) {
+    if (!this.element || !this.element.innerText) {
       return;
     }
 
