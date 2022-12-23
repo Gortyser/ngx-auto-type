@@ -15,11 +15,11 @@ export class NgxAutoTypeDirective implements OnInit {
   get isEnabled(): boolean | undefined {
     return this._isEnabled;
   }
+  @Input() public typingDelay: number = 50;
   @Output() public natTypingEnd: EventEmitter<void> = new EventEmitter();
 
   private element: HTMLElement | undefined;
   private originalText: string | undefined;
-  private typingDelay: number = 50;
   private _isEnabled: boolean | undefined = true;
 
   public constructor(private elementRef: ElementRef) {
