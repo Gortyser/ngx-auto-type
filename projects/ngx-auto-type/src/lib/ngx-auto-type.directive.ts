@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Directive({
   selector: '[ngxAutoType]'
@@ -15,6 +15,7 @@ export class NgxAutoTypeDirective implements OnInit {
   get isEnabled(): boolean | undefined {
     return this._isEnabled;
   }
+  @Output() public natTypingEnd: EventEmitter<void> = new EventEmitter();
 
   private element: HTMLElement | undefined;
   private originalText: string | undefined;
@@ -68,6 +69,7 @@ export class NgxAutoTypeDirective implements OnInit {
       currentIndex++;
       if (currentIndex === textLength) {
         clearInterval(interval);
+        this.natTypingEnd.emit();
       }
     }, this.typingDelay);
   }
